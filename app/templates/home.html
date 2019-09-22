@@ -2,8 +2,8 @@
 {% block content %}
   <section class="section new-section" style="background-color: #a8cac9; display: flex; padding-left: 12%; padding-right: 12%; padding-top: 0%">
 
-    <div class="container1" style = "width: 70%; background-color: whitesmoke;">
-      <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important; font-size: 25px; font-stretch: expanded;">Popular books</h1><br>
+    <div class="container1" style = "width: 70%; background-color: white;">
+      <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important; font-size: 25px; font-stretch: expanded; padding-top: 1%;">Popular books</h1><br>
         <div class="tile is-ancester" style = "padding-top: 0em">
           {% for column in [0,1,2] %}
           <div class="tile is-parent is-4 is-vertical">
@@ -37,39 +37,21 @@
       </div>
     </div>
 
-      <div class="container1" style = "width:30%; background-color: gainsboro;">
-          <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important; font-size: 25px; font-stretch: expanded; display: flex; justify-content: center;">Put infformation of your favourite book here</h1><br>
-        <div class="container">
-          <div class="tile is-ancester">
-            {% for column in [0,1,2] %}
-            <div class="tile is-parent is-4 is-vertical">
-              <div class="tile is-child"> 
-                {% for product in products[column::3] %}
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-square">
-                      <img src="https://storage.cloud.google.com/{{ bucket }}/{{ product.image }}" onerror="this.src='https://storage.cloud.google.com/{{bucket}}/placeholder.png'">
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <h1 class="title is-spaced">{{ product.name }}</h1>
-                    <p class="subtitle is-6">{{ product.description }}</p>
-                    <p class="subtitle is-4">${{ product.price }}</p>
-                    <p>
-                      {% for label in product.labels[:3] %}
-                      <span class="tag is-light is-medium">{{ label }}</span>
-                      {% endfor %}
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <a class="card-footer-item" href="/checkout?id={{product.id}}">Purchase</a>
-                  </div>
-                </div>
-                <br>
-                {% endfor %}
-              </div>
-            </div>
-            {% endfor %}
+      <div class="container1" style = "width:30%; background-color: lightgrey;">
+          <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 5%">Tell us which book you like</h1><br>
+        <div class="container" style ="display:flex; justify-content: center; padding: 0;">
+            <form>
+                Title name:<br>
+                <input type="text" name="Titlename"><br>
+                Author name:<br>
+                <input type="text" name="Authorname">
+              </form>
+          </div>
+          <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 10%">These are books you might like</h1><br>
+        <div class="container" style ="display:flex; justify-content: center; padding: 0;">
+            <ul>
+                <li><a href="#home">Book1 , title, author, image</a></li>
+              </ul>
           </div>
         </div>
   </section>
