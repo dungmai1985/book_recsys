@@ -32,12 +32,9 @@ class Product:
         if data:
             return Product(
                 id=document.id,
-                name=data.get('name'),
-                description=data.get('description'),
-                image=data.get('image'),
-                labels=data.get('labels'),
-                price=data.get('price'),
-                created_at=data.get('created_at')
+                name=data.get('Book-Title'),
+                publisher=data.get('Publisher'),
+                image=data.get('Image'),
+                year = data.get('Year-Of-Publication'))
             )
-
         return None

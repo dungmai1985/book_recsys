@@ -52,7 +52,7 @@ def list_products():
        A list of Product objects.
     """
 
-    products = firestore_client.collection('dataset-book').order_by('created_at').get()
+    products = firestore_client.collection('dataset-book').order_by('book_id').get()
     product_list = [Product.deserialize(product) for product in list(products)]
     return product_list
 
