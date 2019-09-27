@@ -9,11 +9,11 @@ class Product:
     Data class for products.
     """
     name: str
-    description: str
+    author: str
+    publisher: str
+    # labels: List[str]
     image: str
-    labels: List[str]
-    price: float
-    created_at: int
+    year: str
     id: str = None
 
 
@@ -33,8 +33,9 @@ class Product:
             return Product(
                 id=document.id,
                 name=data.get('Book-Title'),
+                author=data.get('Book-Author'),
                 publisher=data.get('Publisher'),
-                image=data.get('Image'),
-                year = data.get('Year-Of-Publication'))
+                image=data.get('Image-URL-S'),
+                year = data.get('Year-Of-Publication')
             )
         return None

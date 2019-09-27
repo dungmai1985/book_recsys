@@ -1,43 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section new-section" style="background-color: #a8cac9; display: flex; padding-left: 12%; padding-right: 12%; padding-top: 0%; padding-bottom: 1%;">
+  <section class="section new-section" style="background-color: #a8cac9; display: flex; align-items: stretch; padding-left: 12%; padding-right: 12%; padding-top: 0%; padding-bottom: 1%;">
 
-    <div class="container1" style = "width: 70%; background-color: white;">
+    <div class="container-left">
       <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important; font-size: 25px; font-stretch: expanded; padding-top: 1%;">Popular books</h1><br>
-        <div class="tile is-ancester" style = "padding-top: 0em">
-          {% for column in [0,1,2] %}
-          <div class="tile is-parent is-4 is-vertical">
+        <div class="product-listing tile is-ancester" style = "padding-top: 0em">
+          {% for column in [0,1] %}
+          <div class="tile is-parent is-6 is-vertical">
             <div class="tile is-child"> 
               {% for product in products[column::3] %}
-              <div class="card">
+              <div class="card product-item">
                 <div class="card-image">
-                  <figure class="image is-square"></figure>
-                    <img src="https://storage.cloud.google.com/{{ bucket }}/{{ product.image }}" onerror="this.src='https://storage.cloud.google.com/{{bucket}}/placeholder.png'">
+
+                  <figure class="image is-square">
+                    <img src="{{ product.image }}" onerror="this.src='https://storage.cloud.google.com/{{bucket}}/placeholder.png'">
                   </figure>
-                <div class="card-content">
-                  <h1 class="title is-spaced">{{ product.name }}</h1>
-                  <p class="subtitle is-6">{{ product.description }}</p>
-                  <p class="subtitle is-4">${{ product.price }}</p>
-                  <p>
-                    {% for label in product.labels[:3] %}
-                    <span class="tag is-light is-medium">{{ label }}</span>
-                    {% endfor %}
-                  </p>
+
+                  <div class="card-content">
+                    <p class="product-name">{{ product.name }}</p>
+                    <p class ="author-name">by {{ product.author}}</p>
+                    <p class="subtitle is-6">{{ product.publisher}}</p>
+                    <img class="subtitle is-4" >{{ product.year }}</img>
+                  </div>
+
+                  <div class="card-footer">
+                    <a class="card-footer-item" href="/checkout?id={{product.id}}">Purchase</a>
+                  </div>
                 </div>
-                <div class="card-footer">
-                  <a class="card-footer-item" href="/checkout?id={{product.id}}">Purchase</a>
               </div>
-              <br>
               {% endfor %}
             </div>
           </div>
           {% endfor %}
-            </div>
-          </div>
       </div>
     </div>
 
-      <div class="container1" style = "width:30%; background-color: lightgrey;">
+    <div class="container-right">
           <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 5%">Tell us which book you like</h1><br>
         <div class="container" style ="display:flex; justify-content: center; padding: 0;">
             <form>
@@ -46,13 +44,13 @@
                 Author name:<br>
                 <input type="text" name="Authorname">
               </form>
-          </div>
+        </div>
           <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 10%">These are books you might also like</h1><br>
         <div class="container" style ="display:flex; justify-content: center; padding: 0;">
             <ul>
                 <li><a href="#home">Book1 , title, author, image</a></li>
               </ul>
-          </div>
         </div>
+      </div>
   </section>
 {% endblock %}

@@ -1,0 +1,22 @@
+.new-section {
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.container-left {
+    /* display: flex;
+    width: 70%; */
+}
+
+.container-right {
+    /* display: flex;
+    width: 30%; */
+}
+
+.product-listing .product-item {
+    margin-bottom: 1em;
+}
+
+.product-listing .product-item .product-name  {
+    font-weight: bold;
+}
