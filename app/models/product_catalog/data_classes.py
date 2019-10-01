@@ -32,10 +32,10 @@ class Product:
         if data:
             return Product(
                 id=document.id,
-                name=data.get('Book-Title'),
-                author=data.get('Book-Author'),
-                publisher=data.get('Publisher'),
-                image=data.get('Image-URL-S'),
-                year = data.get('Year-Of-Publication')
+                name=data.get('book_title'),
+                author=data.get('book_author'),
+                publisher=data.get('publisher'),
+                image=data.get('image'),
+                year = data.get('year_of_publication')
             )
         return None

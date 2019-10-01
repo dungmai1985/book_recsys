@@ -23,10 +23,10 @@ def add_product(product):
     """
 
     product_id = uuid.uuid4().hex
-    firestore_client.collection('products').document(product_id).set(asdict(product))
+    firestore_client.collection('book_data').document(product_id).set(asdict(product))
     return product_id
 
-def get_product(product_id):
+def get_book(product_id):
     """
     Helper function for getting a product.
 
@@ -37,8 +37,8 @@ def get_product(product_id):
        A Product object.
     """
 
-    product = firestore_client.collection('products').document(product_id).get()
-    return Product.deserialize(product)
+    book = firestore_client.collection('book_data').document(book_id).get()
+    return Product.deserialize(book)
 
 
 def list_products():
@@ -52,8 +52,8 @@ def list_products():
        A list of Product objects.
     """
 
-    products = firestore_client.collection('dataset-book').order_by('BookId').get()
-    product_list = [Product.deserialize(product) for product in list(products)]
+    products = firestore_client.collection('book_data').order_by('rating_mean').get()
+    product_list = [Product.deserialize(book) for product in list(products[:15])]
     return product_list
 
 def calculate_total_price(product_ids):
