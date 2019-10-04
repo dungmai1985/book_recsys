@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section new-section" style="background-color: #a8cac9; display: flex; align-items: stretch; padding-left: 12%; padding-right: 12%; padding-top: 0%; padding-bottom: 1%;">
+  <section class="section new-section" style="background-color: white; display: flex; align-items: stretch; padding-left: 10%; padding-right: 10%; padding-top: 0%; padding-bottom: 1%;">
 
-    <div class="container-left">
+    <div class="container-left" style = "display: flex; flex-direction: column; width: 70%;">
       <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important; font-size: 25px; font-stretch: expanded; padding-top: 1%;">Popular books</h1><br>
         <div class="product-listing tile is-ancester" style = "padding-top: 0em">
-          {% for column in [0,1] %}
-          <div class="tile is-parent is-6 is-vertical">
+          {% for column in [0,1,2] %}
+          <div class="tile is-parent is-4 is-vertical">
             <div class="tile is-child"> 
               {% for product in products[column::3] %}
               <div class="card product-item">
@@ -16,16 +16,15 @@
                     <img src="{{ product.image }}" onerror="this.src='https://storage.cloud.google.com/{{bucket}}/placeholder.png'">
                   </figure>
 
-                  <div class="card-content">
+                  <!-- <div class="card-content">
                     <p class="product-name">{{ product.name }}</p>
                     <p class ="author-name">by {{ product.author}}</p>
-                    <p class="subtitle is-6">{{ product.publisher}}</p>
-                    <img class="subtitle is-4" >{{ product.year }}</img>
+                    <p class="subtitle is-12" >{{ product.year }}</p>
                   </div>
 
                   <div class="card-footer">
                     <a class="card-footer-item" href="/checkout?id={{product.id}}">Purchase</a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               {% endfor %}
@@ -35,22 +34,46 @@
       </div>
     </div>
 
-    <div class="container-right">
+    <div class="container-right" style = "display: flex; flex-direction: column; width: 30%; background-color: lightblue;">
           <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 5%">Tell us which book you like</h1><br>
-        <div class="container" style ="display:flex; justify-content: center; padding: 0;">
-            <form>
-                Title name:<br>
-                <input type="text" name="Titlename"><br>
-                Author name:<br>
-                <input type="text" name="Authorname">
-              </form>
+        <div class="container" style ="display:flex; justify-content: center;">
+          <form action="/" method="POST">
+            Title name:<br>
+                <input id = "inputtext" type="text" name="title"><br>
+                <input type="submit" id="inputButton" value="Submit"/>
+                <input type="button" id="clearButton" value="Clear"/>   
+            </form>
+          <div>
+              <p id='result'></p>
+          </div>
+           
         </div>
           <h1 class="title" style = "font-family: 'Trebuchet MS', 'Verdana', 'Helvetica', 'Arial' !important;font-size: 20px;font-stretch: expanded;display: flex;justify-content: center; padding-top: 10%">These are books you might also like</h1><br>
         <div class="container" style ="display:flex; justify-content: center; padding: 0;">
             <ul>
-                <li><a href="#home">Book1 , title, author, image</a></li>
-              </ul>
+              {% for book in products %}
+                <li style = "display: flex; justify-content: center">
+                   - {{ book.title }} by {{ book.author }}
+                </li>
+              {% endfor %}
+            </ul>
         </div>
       </div>
   </section>
+  <script src="static/js/jquery-3.4.1.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script type="text/javascript">
+    // $("#inputButton").click(function(){
+    //     // var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+    //     var input = document.getElementById("inputtext").value;
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/",
+    //         data: input,
+    //         success: function(data){
+    //           // $('#result').text('Output: ' + data);
+    //         }
+    //     });
+    // });
+</script>
 {% endblock %}

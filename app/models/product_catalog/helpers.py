@@ -6,6 +6,7 @@ from google.cloud import firestore
 
 from .data_classes import Product
 
+
 BUCKET = os.environ.get('GCS_BUCKET')
 
 firestore_client = firestore.Client()
@@ -26,12 +27,12 @@ def add_product(product):
     firestore_client.collection('book_data').document(product_id).set(asdict(product))
     return product_id
 
-def get_book(product_id):
+def get_book(book_id):
     """
-    Helper function for getting a product.
+    Helper function for getting a book.
 
     Parameters:
-       product_id (str): The ID of the product.
+       book_id (str): The ID of the book.
 
     Output:
        A Product object.
@@ -52,8 +53,8 @@ def list_products():
        A list of Product objects.
     """
 
-    products = firestore_client.collection('book_data').order_by('rating_mean').get()
-    product_list = [Product.deserialize(book) for product in list(products[:15])]
+    products = firestore_client.collection('book_ratings').order_by('book_id').get()
+    product_list = [Product.deserialize(product) for product in list(products)]
     return product_list
 
 def calculate_total_price(product_ids):

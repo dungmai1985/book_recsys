@@ -1,16 +1,17 @@
 .new-section {
-    /* display: flex;
-    flex-direction: row; */
+    display: flex;
+    flex-direction: row;
 }
 
 .container-left {
-    /* display: flex;
-    width: 70%; */
+    display: flex;
+    width: 70%;
+    background-color: lightslategray;
 }
 
 .container-right {
-    /* display: flex;
-    width: 30%; */
+    display: flex;
+    width: 30%;
 }
 
 .product-listing .product-item {

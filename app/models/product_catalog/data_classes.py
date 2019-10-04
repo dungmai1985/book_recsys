@@ -37,5 +37,6 @@ class Product:
                 publisher=data.get('publisher'),
                 image=data.get('image'),
                 year = data.get('year_of_publication')
+                
             )
         return None

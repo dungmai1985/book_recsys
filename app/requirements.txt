@@ -5,3 +5,4 @@ grpcio==1.23.0
 google-cloud-storage==1.13.0
 google-cloud-firestore==0.30.0
 firebase-admin==2.14.0
+gunicorn==19.9.0
